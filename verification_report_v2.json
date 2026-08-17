@@ -1,0 +1,541 @@
+{
+  "summary": {
+    "compares_to": "first pass was 60% on a different 20-app sample; this is a fresh, non-overlapping sample to test generalization.",
+    "sample_size": 20,
+    "seed": 2024,
+    "sampling": "Stratified across all 10 categories and across self_serve values proportional to the full v2 dataset (15 self_serve / 4 gated / 1 unknown); excludes the 20 apps from the first verification pass.",
+    "dataset_file": "results_final_v2.json",
+    "overall_accuracy": {
+      "correct": 17,
+      "total": 20,
+      "pct": 85.0
+    },
+    "self_serve_accuracy": {
+      "correct": 17,
+      "total": 20,
+      "pct": 85.0
+    },
+    "buildability_verdict_accuracy": {
+      "correct": 17,
+      "total": 20,
+      "pct": 85.0
+    },
+    "accuracy_by_pipeline_bucket": {
+      "gated": {
+        "correct": 2,
+        "total": 4,
+        "pct": 50.0
+      },
+      "self_serve": {
+        "correct": 15,
+        "total": 15,
+        "pct": 100.0
+      },
+      "unknown": {
+        "correct": 0,
+        "total": 1,
+        "pct": 0.0
+      }
+    },
+    "baseline_comparison": {
+      "first_sample_pct": 60.0,
+      "fresh_sample_pct": 85.0,
+      "same_sample_retest_pct": 100.0,
+      "interpretation": "The fix generalized substantially (60% -> 85% on a fresh, non-overlapping sample), confirming it was not merely memorizing the 20 known errors. But 85%, not ~100%: the 100% re-test on the original sample was circular. Every error in this fresh sample fell in the gated/unknown buckets; all 15 self_serve-bucket apps were correct (100%)."
+    },
+    "new_error_patterns": {
+      "C_false_gated_never_rechecked": {
+        "apps": [
+          "Bright Data",
+          "Mermaid CLI"
+        ],
+        "description": "The fix only re-examined apps whose self_serve was 'self_serve' or 'unknown', explicitly leaving original-pipeline 'gated' verdicts untouched. That scope left false-'gated' verdicts uncorrected. Bright Data is fully self-serve (free trial, PAYG, auto-created API key, 5k free credits/mo). Mermaid CLI is a free open-source npm tool with no account and no auth at all. Both are wrongly blocked. 2 of the 4 gated-bucket apps sampled were false, so the gated bucket likely carries a high residual error rate.",
+        "recommended_fix": "Run the same pricing/signup re-check over ALL apps currently marked 'gated' (18 in v2, especially the ~9 original-pipeline ones never touched), not just self_serve/unknown."
+      },
+      "D_catalog_and_auth_hallucination": {
+        "apps": [
+          "Mermaid CLI"
+        ],
+        "description": "Mermaid CLI is a local OSS CLI, not a hosted API product, yet it was assigned auth 'OAuth2' and a gated verdict. This is a hallucinated auth method plus a category error (an offline tool has no access model). Signals that some catalog entries are not hosted APIs and need a 'not an API / OSS tool' classification rather than a self_serve/gated verdict."
+      },
+      "E_unknown_still_hides_determinable_answers": {
+        "apps": [
+          "iPayX"
+        ],
+        "description": "One of the two residual 'unknown' apps was actually determinable on a second look ('no signup required', public endpoint => self_serve). Residual 'unknown' should not be treated as final; a niche product still deserves one more targeted check."
+      }
+    },
+    "publish_recommendation": "Improved and closer to publishable on the self_serve bucket (100% in this sample), but not done: the gated bucket is now the weak spot (~50% error in-sample) because the fix never re-verified it. Re-run the pricing/signup check over all 'gated' apps and re-resolve the last 'unknown' entries before publishing."
+  },
+  "results": [
+    {
+      "app_name": "LinkedIn Ads",
+      "category": "Marketing Ads Email Social",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0 (approved partners)"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://learn.microsoft.com/en-us/linkedin/marketing/",
+      "notes": "Correct. Marketing Developer Platform requires selective manual partner approval (weeks-months, common rejection); not open self-serve. gated/blocked holds."
+    },
+    {
+      "app_name": "BigCommerce",
+      "category": "Ecommerce",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth (X-Auth-Token)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developer.bigcommerce.com/docs/start/authentication",
+      "notes": "Correct. Free trial store + free non-transactional sandbox, self-serve OAuth API accounts. (Pipeline auth 'API Key' is loosely right; it is OAuth token-based.)"
+    },
+    {
+      "app_name": "iPayX",
+      "category": "Finance and Fintech",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "none / open MCP endpoint"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://github.com/iPAYX-Technologies/mcp-fx-audit",
+      "notes": "MISMATCH (residual unknown that was determinable). iPayX is an FX-audit MCP server whose docs state 'no signup is required to access the service' with a public live endpoint. That is openly accessible, i.e. self_serve/ready, not unknown/partial. Niche product; evidence is vendor docs, so confidence moderate."
+    },
+    {
+      "app_name": "Stripe",
+      "category": "Finance and Fintech",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key (test/live secret keys)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://docs.stripe.com/api/authentication",
+      "notes": "Correct. Free self-serve account, instant test-mode secret keys, no sales contact."
+    },
+    {
+      "app_name": "MrScraper",
+      "category": "Data SEO and Scraping",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://mrscraper.com/",
+      "notes": "Correct direction. Self-serve SaaS scraper with API; paid from ~$49/mo via self-serve checkout (no sales contact). Caveat: no free tier confirmed, so 'ready' rests on self-serve paid signup; lower confidence."
+    },
+    {
+      "app_name": "Discord",
+      "category": "Communications and Messaging",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Bot Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Bot Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://discord.com/developers/docs/topics/oauth2",
+      "notes": "Correct. Free developer portal; create an application, get OAuth2 client + bot token. Auth matches."
+    },
+    {
+      "app_name": "Zendesk",
+      "category": "Support and Helpdesk",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API token",
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://www.zendesk.com/pricing/",
+      "notes": "Correct (v2 fix holds). Self-serve 14-day trial, no CC; Support tier self-serve; API included."
+    },
+    {
+      "app_name": "HubSpot",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "API Key",
+          "Static Token",
+          "Client Credentials"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Private app token",
+          "API Key (legacy)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.hubspot.com/apisbytier",
+      "notes": "Correct. Free tier includes API access (250k calls/day); self-serve. Auth matches."
+    },
+    {
+      "app_name": "Airtable",
+      "category": "Productivity and Project Mgmt",
+      "pipeline_answer": {
+        "auth_methods": "not found",
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Personal access token",
+          "OAuth"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://airtable.com/developers/web/guides/personal-access-tokens",
+      "notes": "Correct (v2 fix holds). Free plan, self-serve personal access token. (Pipeline auth 'not found' is a gap, but self_serve/verdict right.)"
+    },
+    {
+      "app_name": "Netlify",
+      "category": "Developer Infra and Data",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Personal Access Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Personal Access Token",
+          "OAuth2"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://docs.netlify.com/api-and-cli-guides/api-guides/get-started-with-api/",
+      "notes": "Correct. Free tier, self-serve PAT + OAuth2. Auth matches."
+    },
+    {
+      "app_name": "DealCloud",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key",
+          "Authorization Token"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key",
+          "Authorization Token"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://www.intapp.com/dealcloud/",
+      "notes": "Correct (v2 fix holds). Enterprise-only; API access/pricing requires contacting Intapp sales; no public self-serve."
+    },
+    {
+      "app_name": "Close",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key",
+          "OAuth"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://close.com/pricing",
+      "notes": "Correct. 14-day free trial, no CC; docs state you can sign up and set up without talking to sales."
+    },
+    {
+      "app_name": "Mermaid CLI",
+      "category": "AI Research and Media-native",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "none (local OSS tool)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://github.com/mermaid-js/mermaid-cli",
+      "notes": "MISMATCH (false gated + hallucinated auth). @mermaid-js/mermaid-cli is a free open-source npm command-line tool ('npm i @mermaid-js/mermaid-cli'); there is no account, no gating, and no OAuth2. Should be self_serve/ready with no auth. Pipeline's gated/blocked + OAuth2 is wrong on every field. NEVER rechecked by the fix (it was already 'gated')."
+    },
+    {
+      "app_name": "Pinterest",
+      "category": "Marketing Ads Email Social",
+      "pipeline_answer": {
+        "auth_methods": [
+          "not found"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.pinterest.com/docs/getting-started/set-up-authentication-and-authorization/",
+      "notes": "Correct (v2 fix holds). Free API; self-serve dev app with open/Trial access since v5. (Pipeline auth 'not found' is a gap.)"
+    },
+    {
+      "app_name": "Asana",
+      "category": "Productivity and Project Mgmt",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Personal access token",
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.asana.com/docs/personal-access-token",
+      "notes": "Correct. Free plan; self-serve PAT from developer console + OAuth. Auth matches."
+    },
+    {
+      "app_name": "Salesforce",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developer.salesforce.com/signup",
+      "notes": "Correct. Free, lifetime Developer Edition org with full API access; self-serve signup, no sales contact."
+    },
+    {
+      "app_name": "Bright Data",
+      "category": "Data SEO and Scraping",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key",
+          "Native Access (proxy username/password)"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key",
+          "Native proxy user/pass"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://docs.brightdata.com/general/account/api-token",
+      "notes": "MISMATCH (false gated). Bright Data is self-serve: everyone who signs up gets a free trial, self-serve checkout, pay-as-you-go, and a recurring 5,000 free credits/month; an API key is auto-created on account creation. Should be self_serve/ready. Auth (API key + proxy user/pass) was right, but self_serve/verdict wrong. NEVER rechecked by the fix (already 'gated')."
+    },
+    {
+      "app_name": "Intercom",
+      "category": "Support and Helpdesk",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Access Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "Access Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.intercom.com/",
+      "notes": "Correct. Free development workspace + 14-day self-serve trial, no CC. Auth matches."
+    },
+    {
+      "app_name": "Pipedrive",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API token",
+          "OAuth2"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.pipedrive.com/",
+      "notes": "Correct. 14-day free trial (no CC) + indefinitely-free developer sandbox; self-serve. Auth matches."
+    },
+    {
+      "app_name": "Reducto",
+      "category": "AI Research and Media-native",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://reducto.ai/pricing",
+      "notes": "Correct. Self-serve Standard tier, 15,000 free credits then pay-as-you-go; immediate access, no sales contact for Standard."
+    }
+  ]
+}

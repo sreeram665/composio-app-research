@@ -1,0 +1,30 @@
+# Environment variables / secrets — NEVER commit API keys
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+env/
+.venv/
+*.egg-info/
+
+# Playwright browser binaries (large, auto-installed via `playwright install`)
+playwright-report/
+test-results/
+
+# OS junk
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Scratch/test files not meant for the final submission
+results_test.json

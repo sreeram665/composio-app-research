@@ -1,0 +1,501 @@
+{
+  "summary": {
+    "dataset_file": "results_full.json (no results_final.json existed; this is the completed 100-app dataset)",
+    "sample_size": 20,
+    "sampling": "Stratified by buildability_verdict (12 ready / 6 partial / 2 blocked, proportional to full 61/30/9) and spread across all 10 categories; seed=42.",
+    "overall_accuracy": {
+      "correct": 12,
+      "total": 20,
+      "pct": 60.0
+    },
+    "self_serve_accuracy": {
+      "correct": 12,
+      "total": 20,
+      "pct": 60.0
+    },
+    "buildability_verdict_accuracy": {
+      "correct": 12,
+      "total": 20,
+      "pct": 60.0
+    },
+    "error_patterns": {
+      "A_confident_false_self_serve": {
+        "apps": [
+          "Brex",
+          "Gladly"
+        ],
+        "description": "Enterprise, sales-led products with NO free signup were graded self_serve/ready because their docs describe generating an API token inside the product UI. The LLM conflates 'existing customer can mint a token in Settings' with 'anyone can sign up free.' Highest-stakes error: a false green light on apps that block you at the door."
+      },
+      "B_partial_unknown_is_a_blind_spot": {
+        "apps": [
+          "Smartsheet",
+          "Neo4j",
+          "Podio",
+          "SE Ranking",
+          "Salesforce Commerce Cloud",
+          "Google Ads"
+        ],
+        "description": "Every 'partial/unknown' in the sample was actually determinable. 4 were truly self_serve/ready (under-sold) and 2 were truly gated/blocked (under-flagged). Root cause: the fetched auth/reference page rarely states the signup/pricing model, so the model returns 'unknown', which collapses to 'partial'. 'partial' is functioning as a 'did not check the pricing/signup page' bucket, not a real middle verdict."
+      }
+    },
+    "bias_direction": "Two-sided, but the dangerous side is Pattern A: gated enterprise products mislabeled self_serve/ready (2/2 enterprise-sales apps in the sample). Pattern B mostly under-sells genuinely self-serve apps and hides a couple of gates behind 'partial'.",
+    "publish_recommendation": "NOT publish-ready. 60% on the two highest-stakes fields, with 2 confident false 'ready' verdicts on gated products, means it needs another pass that checks the actual pricing/signup page (is there a free/instant tier?) rather than only the API auth docs, and that re-resolves every 'partial/unknown' instead of treating it as final."
+  },
+  "results": [
+    {
+      "app_name": "Snowflake",
+      "category": "Developer Infra and Data",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth",
+          "Key-pair/JWT",
+          "Workload Identity Federation"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating",
+      "notes": "Correct. Free self-serve 30-day trial, no sales contact. Auth confirmed (OAuth/key-pair/JWT). Pipeline left auth_methods empty but self_serve and verdict are right."
+    },
+    {
+      "app_name": "Shopify",
+      "category": "Ecommerce",
+      "pipeline_answer": {
+        "auth_methods": [
+          "Session tokens",
+          "Public access tokens",
+          "Private access tokens"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth (authorization code)",
+          "App access tokens",
+          "Storefront public/private tokens"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://shopify.dev/docs/api/usage/authentication",
+      "notes": "Correct. Free partner/dev accounts are instant and self-serve; token/OAuth auth confirmed."
+    },
+    {
+      "app_name": "Brex",
+      "category": "Finance and Fintech",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Bearer user token"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://developer.brex.com/docs/authentication/",
+      "notes": "MISMATCH (confident over-call). Docs require signing in to dashboard.brex.com as an existing Brex business customer and accepting a developer API agreement. No free/instant signup, so access is GATED and the verdict should be blocked, not self_serve/ready."
+    },
+    {
+      "app_name": "Gladly",
+      "category": "Support and Helpdesk",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Token"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://help.gladly.com/implementation/docs/get-your-api-tokens",
+      "notes": "MISMATCH (confident over-call). Auth (API token) is right, but Gladly is an enterprise contact-center platform sold via sales; no free self-serve signup exists. Tokens are generated in-product only by existing customers with admin roles, so gated/blocked, not self_serve/ready."
+    },
+    {
+      "app_name": "Telegram",
+      "category": "Communications and Messaging",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Bot token (via BotFather)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://core.telegram.org/bots/api",
+      "notes": "Correct. BotFather issues bot tokens instantly and free to anyone. Pipeline left auth_methods empty but self_serve and verdict are right."
+    },
+    {
+      "app_name": "Klaviyo",
+      "category": "Marketing Ads Email Social",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Private API key",
+          "OAuth 2.0",
+          "Public key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developers.klaviyo.com/en/docs/authenticate_",
+      "notes": "Correct. Free self-serve account; private key + OAuth confirmed."
+    },
+    {
+      "app_name": "Fathom",
+      "category": "AI Research and Media-native",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth",
+          "API (public)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://www.fathom.ai/pricing",
+      "notes": "Correct. Free plan plus public API/OAuth, self-serve signup."
+    },
+    {
+      "app_name": "Firecrawl",
+      "category": "Data SEO and Scraping",
+      "pipeline_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://www.firecrawl.dev/",
+      "notes": "Correct. 1,000 free credits/month, no credit card; self-serve API key from dashboard (even a keyless mode)."
+    },
+    {
+      "app_name": "Monday.com",
+      "category": "Productivity and Project Mgmt",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Personal API token",
+          "OAuth 2.0 (apps)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://developer.monday.com/api-reference/docs/authentication",
+      "notes": "Correct. Free tier, self-serve token. Auth is personal API token (plus OAuth for apps); pipeline said OAuth2 which is acceptable but incomplete."
+    },
+    {
+      "app_name": "Attio",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth",
+          "API key/access token"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://docs.attio.com/rest-api/overview",
+      "notes": "Correct. Free self-serve CRM tier; OAuth/access-token auth; MCP support present."
+    },
+    {
+      "app_name": "YouTube Transcript",
+      "category": "AI Research and Media-native",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API key (third-party services)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://transcriptapi.com/blog/youtube-transcript-api-complete-developer-guide",
+      "notes": "self_serve/ready holds via third-party/OSS (youtube-transcript-api, Supadata, etc. with free self-serve keys). DATA-QUALITY CAVEAT: there is no single official 'YouTube Transcript' product; Google's official captions API only covers videos you own. Ambiguous catalog entry."
+    },
+    {
+      "app_name": "Mailchimp",
+      "category": "Marketing Ads Email Social",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2",
+          "API Key"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API key (HTTP Basic)",
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://mailchimp.com/developer/marketing/docs/fundamentals/",
+      "notes": "Correct. Free account has API access; API key + OAuth2 confirmed."
+    },
+    {
+      "app_name": "Salesforce Commerce Cloud",
+      "category": "Ecommerce",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0 (SLAS)",
+          "Account Manager client ID"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://developer.salesforce.com/docs/commerce/commerce-api/guide/scapi-get-started.html",
+      "notes": "MISMATCH (hedge that hid a gate). SCAPI/OCAPI are only available to existing B2C Commerce customers; all clients must be registered in Account Manager. Truth is GATED/blocked; pipeline said unknown/partial."
+    },
+    {
+      "app_name": "Smartsheet",
+      "category": "Productivity and Project Mgmt",
+      "pipeline_answer": {
+        "auth_methods": [
+          "not found"
+        ],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API access token",
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://developers.smartsheet.com/api/smartsheet/guides/basics/authentication",
+      "notes": "MISMATCH (under-call). Free trial plus self-serve token generation in the Smartsheet UI, plus OAuth2. Truth is self_serve/ready; pipeline said unknown/partial."
+    },
+    {
+      "app_name": "Neo4j",
+      "category": "Developer Infra and Data",
+      "pipeline_answer": {
+        "auth_methods": [
+          "not found"
+        ],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Basic auth / driver credentials",
+          "OAuth (Aura API)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://neo4j.com/press-releases/announcing-neo4j-auradb-free/",
+      "notes": "MISMATCH (under-call). Neo4j AuraDB Free is an always-free, no-credit-card, self-serve instance. Truth is self_serve/ready; pipeline said unknown/partial."
+    },
+    {
+      "app_name": "Podio",
+      "category": "CRM and Sales",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://developers.podio.com/authentication",
+      "notes": "MISMATCH (under-call). Free for 5 users, self-serve app registration (client id/secret), OAuth2. Truth is self_serve/ready; pipeline said unknown/partial and left auth empty."
+    },
+    {
+      "app_name": "Google Ads",
+      "category": "Marketing Ads Email Social",
+      "pipeline_answer": {
+        "auth_methods": "not found",
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "OAuth 2.0",
+          "Developer token (approval required)"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://developers.google.com/google-ads/api/docs/get-started/dev-token",
+      "notes": "MISMATCH (hedge that hid a gate). A developer token is required and goes through an approval/review process (Test -> Basic -> Standard). Truth is GATED/blocked; pipeline said unknown/partial."
+    },
+    {
+      "app_name": "SE Ranking",
+      "category": "Data SEO and Scraping",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "unknown",
+        "buildability_verdict": "partial"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "API key (Token header)"
+        ],
+        "self_serve": "self_serve",
+        "buildability_verdict": "ready"
+      },
+      "match": false,
+      "self_serve_correct": false,
+      "verdict_correct": false,
+      "evidence_url": "https://seranking.com/api/how-to-get-api/",
+      "notes": "MISMATCH (under-call). Self-serve API key from the dashboard; even free-trial accounts get a key after email confirmation (paid plans for volume). Truth is self_serve/ready; pipeline said unknown/partial."
+    },
+    {
+      "app_name": "Pylon",
+      "category": "Support and Helpdesk",
+      "pipeline_answer": {
+        "auth_methods": [],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "Bearer API token"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+      "notes": "Correct direction. Documented public REST API, but Pylon is B2B/sales-led with no free self-serve signup; only admins of paying orgs mint tokens, so gated/blocked holds. (Borderline: the API itself is well-documented, so 'partial' would also be defensible.)"
+    },
+    {
+      "app_name": "NotebookLM",
+      "category": "AI Research and Media-native",
+      "pipeline_answer": {
+        "auth_methods": [
+          "OAuth2"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "verified_answer": {
+        "auth_methods": [
+          "(enterprise) Google Cloud auth; no public consumer API"
+        ],
+        "self_serve": "gated",
+        "buildability_verdict": "blocked"
+      },
+      "match": true,
+      "self_serve_correct": true,
+      "verdict_correct": true,
+      "evidence_url": "https://autocontentapi.com/blog/does-notebooklm-have-an-api",
+      "notes": "Correct direction. No public consumer API (2026); only an enterprise-gated Gemini Notebook preview API. gated/blocked holds. Pipeline's auth=OAuth2 is dubious since consumers have no API, but the high-stakes fields are right."
+    }
+  ]
+}

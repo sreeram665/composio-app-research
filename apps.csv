@@ -1,0 +1,101 @@
+app_name,category,website_hint
+Salesforce,CRM and Sales,salesforce.com
+HubSpot,CRM and Sales,hubspot.com
+Pipedrive,CRM and Sales,pipedrive.com
+Attio,CRM and Sales,attio.com
+Twenty,CRM and Sales,twenty.com
+Podio,CRM and Sales,podio.com
+Zoho CRM,CRM and Sales,zoho.com/crm
+Close,CRM and Sales,close.com
+Copper,CRM and Sales,copper.com
+DealCloud,CRM and Sales,api.docs.dealcloud.com
+Zendesk,Support and Helpdesk,zendesk.com
+Intercom,Support and Helpdesk,intercom.com
+Freshdesk,Support and Helpdesk,freshdesk.com
+Front,Support and Helpdesk,front.com
+Pylon,Support and Helpdesk,usepylon.com
+LiveAgent,Support and Helpdesk,liveagent.com
+Plain,Support and Helpdesk,plain.com
+Help Scout,Support and Helpdesk,helpscout.com
+Gorgias,Support and Helpdesk,gorgias.com
+Gladly,Support and Helpdesk,gladly.com
+Slack,Communications and Messaging,slack.com
+Twilio,Communications and Messaging,twilio.com
+Zoho Cliq,Communications and Messaging,zoho.com/cliq
+Lark,Communications and Messaging,open.larksuite.com
+Pumble,Communications and Messaging,pumble.com
+Discord,Communications and Messaging,discord.com
+Telegram,Communications and Messaging,core.telegram.org
+WhatsApp Business,Communications and Messaging,developers.facebook.com/docs/whatsapp
+Aircall,Communications and Messaging,aircall.io
+Vonage,Communications and Messaging,developer.vonage.com
+Google Ads,Marketing Ads Email Social,developers.google.com/google-ads
+Meta Ads,Marketing Ads Email Social,developers.facebook.com/docs/marketing-apis
+LinkedIn Ads,Marketing Ads Email Social,learn.microsoft.com/linkedin/marketing
+GoHighLevel,Marketing Ads Email Social,highlevel.stoplight.io
+Mailchimp,Marketing Ads Email Social,mailchimp.com/developer
+Klaviyo,Marketing Ads Email Social,developers.klaviyo.com
+systeme.io,Marketing Ads Email Social,systeme.io
+Pinterest,Marketing Ads Email Social,developers.pinterest.com
+Threads,Marketing Ads Email Social,developers.facebook.com/docs/threads
+SendGrid,Marketing Ads Email Social,sendgrid.com
+Shopify,Ecommerce,shopify.dev
+WooCommerce,Ecommerce,woocommerce.com/document/woocommerce-rest-api
+BigCommerce,Ecommerce,developer.bigcommerce.com
+Salesforce Commerce Cloud,Ecommerce,developer.salesforce.com/docs/commerce
+Magento,Ecommerce,developer.adobe.com/commerce
+Squarespace,Ecommerce,developers.squarespace.com
+Ecwid,Ecommerce,api-docs.ecwid.com
+Gumroad,Ecommerce,gumroad.com/api
+Amazon Selling Partner,Ecommerce,developer-docs.amazon.com/sp-api
+fanbasis,Ecommerce,fanbasis.com
+DataForSEO,Data SEO and Scraping,docs.dataforseo.com
+SE Ranking,Data SEO and Scraping,seranking.com/api
+Ahrefs,Data SEO and Scraping,ahrefs.com/api
+MrScraper,Data SEO and Scraping,docs.mrscraper.com
+Apify,Data SEO and Scraping,docs.apify.com
+Firecrawl,Data SEO and Scraping,firecrawl.dev
+Bright Data,Data SEO and Scraping,brightdata.com
+Sherlock,Data SEO and Scraping,github.com/sherlock-project/sherlock
+Waterfall.io,Data SEO and Scraping,waterfall.io
+Clay,Data SEO and Scraping,clay.com
+GitHub,Developer Infra and Data,docs.github.com/rest
+Vercel,Developer Infra and Data,vercel.com/docs/rest-api
+Netlify,Developer Infra and Data,docs.netlify.com/api
+Cloudflare,Developer Infra and Data,developers.cloudflare.com/api
+Supabase,Developer Infra and Data,supabase.com/docs
+Neo4j,Developer Infra and Data,neo4j.com/docs/api
+Snowflake,Developer Infra and Data,docs.snowflake.com
+MongoDB Atlas,Developer Infra and Data,mongodb.com/docs/atlas/api
+Datadog,Developer Infra and Data,docs.datadoghq.com/api
+Sentry,Developer Infra and Data,docs.sentry.io/api
+Notion,Productivity and Project Mgmt,developers.notion.com
+Airtable,Productivity and Project Mgmt,airtable.com/developers
+Linear,Productivity and Project Mgmt,developers.linear.app
+Jira,Productivity and Project Mgmt,developer.atlassian.com
+Asana,Productivity and Project Mgmt,developers.asana.com
+Monday.com,Productivity and Project Mgmt,developer.monday.com
+ClickUp,Productivity and Project Mgmt,clickup.com/api
+Coda,Productivity and Project Mgmt,coda.io/developers
+Smartsheet,Productivity and Project Mgmt,smartsheet.com/developers
+Harvest,Productivity and Project Mgmt,help.getharvest.com/api-v2
+Stripe,Finance and Fintech,stripe.com/docs/api
+Plaid,Finance and Fintech,plaid.com/docs
+Binance,Finance and Fintech,binance-docs.github.io
+Paygent Connect,Finance and Fintech,paygent
+iPayX,Finance and Fintech,ipayx.ai/docs
+QuickBooks,Finance and Fintech,developer.intuit.com
+Xero,Finance and Fintech,developer.xero.com
+Brex,Finance and Fintech,developer.brex.com
+Ramp,Finance and Fintech,docs.ramp.com
+PitchBook,Finance and Fintech,pitchbook.com
+NotebookLM,AI Research and Media-native,cloud.google.com/gemini
+Otter AI,AI Research and Media-native,help.otter.ai
+Fathom,AI Research and Media-native,fathom.video
+Consensus,AI Research and Media-native,consensus.app
+Reducto,AI Research and Media-native,reducto.ai
+Devin,AI Research and Media-native,docs.devin.ai
+higgsfield,AI Research and Media-native,higgsfield.ai/cli
+Mermaid CLI,AI Research and Media-native,github.com/mermaid-js/mermaid-cli
+YouTube Transcript,AI Research and Media-native,transcriptapi.com
+Grain,AI Research and Media-native,grain.com

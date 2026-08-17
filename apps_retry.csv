@@ -1,0 +1,36 @@
+app_name,category,website_hint
+Salesforce,CRM and Sales,salesforce.com
+Copper,CRM and Sales,copper.com
+Front,Support and Helpdesk,front.com
+LiveAgent,Support and Helpdesk,liveagent.com
+Gorgias,Support and Helpdesk,gorgias.com
+Twilio,Communications and Messaging,twilio.com
+Zoho Cliq,Communications and Messaging,zoho.com/cliq
+Discord,Communications and Messaging,discord.com
+Aircall,Communications and Messaging,aircall.io
+Google Ads,Marketing Ads Email Social,developers.google.com/google-ads
+Mailchimp,Marketing Ads Email Social,mailchimp.com/developer
+Klaviyo,Marketing Ads Email Social,developers.klaviyo.com
+Shopify,Ecommerce,shopify.dev
+WooCommerce,Ecommerce,woocommerce.com/document/woocommerce-rest-api
+Salesforce Commerce Cloud,Ecommerce,developer.salesforce.com/docs/commerce
+Gumroad,Ecommerce,gumroad.com/api
+fanbasis,Ecommerce,fanbasis.com
+SE Ranking,Data SEO and Scraping,seranking.com/api
+Firecrawl,Data SEO and Scraping,firecrawl.dev
+Bright Data,Data SEO and Scraping,brightdata.com
+Vercel,Developer Infra and Data,vercel.com/docs/rest-api
+Netlify,Developer Infra and Data,docs.netlify.com/api
+Neo4j,Developer Infra and Data,neo4j.com/docs/api
+Snowflake,Developer Infra and Data,docs.snowflake.com
+Notion,Productivity and Project Mgmt,developers.notion.com
+Airtable,Productivity and Project Mgmt,airtable.com/developers
+Jira,Productivity and Project Mgmt,developer.atlassian.com
+Coda,Productivity and Project Mgmt,coda.io/developers
+Plaid,Finance and Fintech,plaid.com/docs
+QuickBooks,Finance and Fintech,developer.intuit.com
+Ramp,Finance and Fintech,docs.ramp.com
+PitchBook,Finance and Fintech,pitchbook.com
+Consensus,AI Research and Media-native,consensus.app
+higgsfield,AI Research and Media-native,higgsfield.ai/cli
+YouTube Transcript,AI Research and Media-native,transcriptapi.com

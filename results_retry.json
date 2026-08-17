@@ -1,0 +1,789 @@
+[
+  {
+    "app_name": "Salesforce",
+    "category": "CRM and Sales",
+    "website_hint": "salesforce.com",
+    "one_liner": "Salesforce provides a cloud-based CRM platform with a REST API for developers",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "The documentation is a public REST API Developer Guide describing OAuth 2.0 authorization",
+    "api_surface": "REST API for accessing Salesforce data and services",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_oauth_and_connected_apps.htm"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Copper",
+    "category": "CRM and Sales",
+    "website_hint": "copper.com",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "REST API with OpenAPI spec and Postman collection, supporting production, staging, demo, and testnet environments",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.copper.co/api-reference/getting-started"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Front",
+    "category": "Support and Helpdesk",
+    "website_hint": "front.com",
+    "one_liner": "not found",
+    "auth_methods": [
+      "OAuth2",
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"you can generate an API token to get up and running more quickly\"",
+    "api_surface": "RESTful Core API covering conversations, contacts, inboxes, teams, tags, and other resources",
+    "has_mcp": true,
+    "mcp_evidence": "MCP server allows you to connect Front data exposed via MCP server to clients like Claude, ChatGPT, and others",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://dev.frontapp.com/docs/authentication"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "LiveAgent",
+    "category": "Support and Helpdesk",
+    "website_hint": "liveagent.com",
+    "one_liner": "not found",
+    "auth_methods": [
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "you need to generate an API key in your admin panel first",
+    "api_surface": "REST API covering a wide range of resources such as agents, bans, calls, canned_messages, chats, companies, contacts, custom_buttons, departments, devices, files, filters, groups, tickets, etc.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://support.liveagent.com/docs/api/v3/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Gorgias",
+    "category": "Support and Helpdesk",
+    "website_hint": "gorgias.com",
+    "one_liner": "Gorgias is a platform that lets developers build integrations to support shop owners and their support teams.",
+    "auth_methods": [],
+    "self_serve": "gated",
+    "gating_evidence": "\"This step is required only if you plan to build a Public app\" and \"For Private apps there is no need for approval\" indicate a gating process.",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "blocked",
+    "blocker": "Access appears gated (sales contact / partnership / existing customer).",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.gorgias.com/"
+    ],
+    "raw_extraction_confidence": "medium",
+    "notes": ""
+  },
+  {
+    "app_name": "Twilio",
+    "category": "Communications and Messaging",
+    "website_hint": "twilio.com",
+    "one_liner": "Twilio provides cloud communications APIs for messaging, voice, video, email, and related services.",
+    "auth_methods": [
+      "not found"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "Build better and engage your customers across all channels with our API reference documentation",
+    "api_surface": "A broad REST API suite covering messaging (SMS, WhatsApp, RCS), voice, video, email (SendGrid), phone numbers, SIP trunking, authentication, and more.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://www.twilio.com/docs"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Zoho Cliq",
+    "category": "Communications and Messaging",
+    "website_hint": "zoho.com/cliq",
+    "one_liner": "Zoho Cliq is a team communication and collaboration platform for messaging and collaboration.",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "The documentation includes a \"Register your application\" step, indicating developers can obtain access themselves.",
+    "api_surface": "Extensive REST API covering user, role, department, team management, chats, messages, threads, channels, scheduled messages, reminders, meetings, and more.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://www.zoho.com/cliq/help/restapi/v2/introduction/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Discord",
+    "category": "Communications and Messaging",
+    "website_hint": "discord.com",
+    "one_liner": "Discord is a communication platform that offers a REST API for developers to interact with its data and services.",
+    "auth_methods": [
+      "OAuth2",
+      "Bot Token"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "Bot tokens can be obtained from the Bot page within your app\u2019s settings, indicating open self\u2011service access.",
+    "api_surface": "A versioned REST API covering a wide range of Discord functionality (messages, guilds, users, etc.).",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.discord.com/developers/reference"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Aircall",
+    "category": "Communications and Messaging",
+    "website_hint": "aircall.io",
+    "one_liner": "Aircall provides a cloud\u2011based phone system that lets teams make and receive calls, manage contacts, and automate communications via its API.",
+    "auth_methods": [
+      "OAuth",
+      "Basic Auth"
+    ],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "A comprehensive REST API covering users, teams, calls, numbers, messages, contacts, tags, webhooks, analytics, and more.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.aircall.io/api-references"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Google Ads",
+    "category": "Marketing Ads Email Social",
+    "website_hint": "developers.google.com/google-ads",
+    "one_liner": "Promote your website, products, and app to the right users with Google Ads.",
+    "auth_methods": "not found",
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "Provides a Google Ads API (REST) along with scripts and webhook integration for automation.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.google.com/google-ads"
+    ],
+    "raw_extraction_confidence": "medium",
+    "notes": ""
+  },
+  {
+    "app_name": "Mailchimp",
+    "category": "Marketing Ads Email Social",
+    "website_hint": "mailchimp.com/developer",
+    "one_liner": "Mailchimp offers a Marketing API that lets developers programmatically access and manage Mailchimp email marketing data, audiences, and campaigns.",
+    "auth_methods": [
+      "OAuth2",
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"Once you have an account and are logged in, you can get an API key and begin making calls to the API.\"",
+    "api_surface": "RESTful API (version 3.0) covering marketing resources like audiences, campaigns, subscribers, plus a separate Export API, described with OpenAPI.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://mailchimp.com/developer/marketing/docs/fundamentals/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Klaviyo",
+    "category": "Marketing Ads Email Social",
+    "website_hint": "developers.klaviyo.com",
+    "one_liner": "Klaviyo is a marketing automation platform that lets businesses build personalized experiences and integrate via its API.",
+    "auth_methods": [],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"Get started for free\" and \"Create test account\" indicate open access.",
+    "api_surface": "RESTful, versioned API covering a broad set of marketing objects, methods, and responses.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.klaviyo.com"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Shopify",
+    "category": "Ecommerce",
+    "website_hint": "shopify.dev",
+    "one_liner": "Shopify is an e\u2011commerce platform that enables merchants to create online stores and offers APIs for apps to integrate with its services.",
+    "auth_methods": [
+      "Session tokens",
+      "Public access tokens",
+      "Private access tokens"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "You can use Shopify CLI to generate a starter app... and create a public access token via the GraphQL Admin API's storefrontAccessTokenCreate mutation.",
+    "api_surface": "Offers both REST and GraphQL APIs (Admin API and Storefront API) with token\u2011based authentication.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://shopify.dev/docs/api/usage/authentication"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "WooCommerce",
+    "category": "Ecommerce",
+    "website_hint": "woocommerce.com/document/woocommerce-rest-api",
+    "one_liner": "WooCommerce offers a REST API that lets developers create, read, update, and delete e\u2011commerce data such as orders, products, and customers.",
+    "auth_methods": [
+      "API Key",
+      "Basic Auth"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"To start using REST API, you first need to generate API keys. Go to WooCommerce > Settings > Advanced > REST API tab and click Add key\"",
+    "api_surface": "A RESTful API (WooCommerce WP REST API v3) covering core store resources like orders, products, customers, etc.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.woocommerce.com/docs/apis/rest-api/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Salesforce Commerce Cloud",
+    "category": "Ecommerce",
+    "website_hint": "developer.salesforce.com/docs/commerce",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.salesforce.com/docs/commerce"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "Gumroad",
+    "category": "Ecommerce",
+    "website_hint": "gumroad.com/api",
+    "one_liner": "Gumroad is a platform that lets creators sell digital products and services online.",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"To start using the API, you'll need to register your OAuth application\" and \"On the application page, click Generate access token\" indicate self\u2011service registration.",
+    "api_surface": "RESTful JSON API covering products, sales, payouts, tax data, offers, and user profile information.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://gumroad.com/api"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "fanbasis",
+    "category": "Ecommerce",
+    "website_hint": "fanbasis.com",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://dev-docs.fanbasis.com/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "SE Ranking",
+    "category": "Data SEO and Scraping",
+    "website_hint": "seranking.com/api",
+    "one_liner": "SE Ranking helps users grow their online visibility using AI-powered SEO and social media management tools.",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://seranking.com/api"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "Firecrawl",
+    "category": "Data SEO and Scraping",
+    "website_hint": "firecrawl.dev",
+    "one_liner": "Firecrawl provides APIs to scrape, crawl, map, search, and extract structured data from webpages in markdown or JSON format.",
+    "auth_methods": [
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "For authentication, it\u2019s required to include an Authorization header. The header should contain Bearer fc-123456789, where fc-123456789 represents your API Key.",
+    "api_surface": "RESTful HTTP API with endpoints for scraping, crawling, URL mapping, searching, and data extraction.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.firecrawl.dev/api-reference/introduction"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Bright Data",
+    "category": "Data SEO and Scraping",
+    "website_hint": "brightdata.com",
+    "one_liner": "Bright Data provides proxy and data\u2011extraction services accessible via an API.",
+    "auth_methods": [
+      "API Key",
+      "Native Access (proxy username/password)"
+    ],
+    "self_serve": "gated",
+    "gating_evidence": "\"Sign in to Bright Data\u2019s control panel... only admins can generate API keys\" indicates account\u2011based access",
+    "api_surface": "REST\u2011style HTTP API (curl example) covering proxy zones, URLs, request formats, etc.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "blocked",
+    "blocker": "Access appears gated (sales contact / partnership / existing customer).",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.brightdata.com/api-reference/authentication"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Vercel",
+    "category": "Developer Infra and Data",
+    "website_hint": "vercel.com/docs/rest-api",
+    "one_liner": "Vercel is a platform that provides a developer\u2011friendly workflow and high\u2011performance hosting for frontend teams.",
+    "auth_methods": [
+      "not found"
+    ],
+    "self_serve": "unknown",
+    "gating_evidence": "No gating or access\u2011restriction information found in the documentation.",
+    "api_surface": "Extensive REST API covering access groups, AI gateway, artifacts, billing and other services.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://vercel.com/docs/rest-api"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Netlify",
+    "category": "Developer Infra and Data",
+    "website_hint": "docs.netlify.com/api",
+    "one_liner": "Netlify is a platform for deploying and managing static sites and web applications via a REST API.",
+    "auth_methods": [
+      "OAuth2",
+      "Personal Access Token"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "Generate a personal access token via Applications > Personal access tokens",
+    "api_surface": "REST API covering site deployments, form submissions, DNS, JavaScript snippets, and other site management functions",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.netlify.com/api"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Neo4j",
+    "category": "Developer Infra and Data",
+    "website_hint": "neo4j.com/docs/api",
+    "one_liner": "Neo4j is a graph database platform that enables storing, querying, and analyzing connected data using the Cypher query language.",
+    "auth_methods": [
+      "not found"
+    ],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://neo4j.com/docs/"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "Snowflake",
+    "category": "Developer Infra and Data",
+    "website_hint": "docs.snowflake.com",
+    "one_liner": "Snowflake is a cloud data platform that lets you store, manage, and analyze data using virtual warehouses, databases, tables, and views.",
+    "auth_methods": [],
+    "self_serve": "self_serve",
+    "gating_evidence": "Mentions \"Getting a Trial Account\" and \"Getting Started\" resources for first\u2011time users, indicating open self\u2011service onboarding.",
+    "api_surface": "Provides a Snowpark API, drivers, connectors, and support for user\u2011defined functions, stored procedures, and the Snowflake Native App Framework for building integrations.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.snowflake.com"
+    ],
+    "raw_extraction_confidence": "medium",
+    "notes": ""
+  },
+  {
+    "app_name": "Notion",
+    "category": "Productivity and Project Mgmt",
+    "website_hint": "developers.notion.com",
+    "one_liner": "Notion is a collaborative workspace platform that lets users create, organize, and manage pages, databases, and other content, with a REST API for programmatic access.",
+    "auth_methods": [
+      "OAuth2",
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "Public connections must undergo a security review before Marketplace listing, but you can create and use a public connection without listing it; internal connections and PATs use static tokens, indicating self\u2011serve access.",
+    "api_surface": "REST API covering pages, databases, views, data sources, file uploads, comments, content search, and user profiles.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.notion.com"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Airtable",
+    "category": "Productivity and Project Mgmt",
+    "website_hint": "airtable.com/developers",
+    "one_liner": "Airtable provides a RESTful API to integrate Airtable data with external systems.",
+    "auth_methods": "not found",
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "REST API using JSON encoding",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://airtable.com/developers/web/api/introduction"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Jira",
+    "category": "Productivity and Project Mgmt",
+    "website_hint": "developer.atlassian.com",
+    "one_liner": "Jira is a platform that lets organizations integrate their data and extend collaboration tools within Atlassian\u2019s ecosystem.",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.atlassian.com"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "Coda",
+    "category": "Productivity and Project Mgmt",
+    "website_hint": "coda.io/developers",
+    "one_liner": "Coda is a new type of document that blends the flexibility of documents, the power of spreadsheets, and the utility of apps into a single canvas.",
+    "auth_methods": [
+      "OAuth2"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "Free developer account",
+    "api_surface": "Provides both REST and GraphQL endpoints, plus webhook support.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://apitracker.io/a/coda"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Plaid",
+    "category": "Finance and Fintech",
+    "website_hint": "plaid.com/docs",
+    "one_liner": "Plaid offers an API that lets developers access users\u2019 banking and financial data.",
+    "auth_methods": [
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"To gain access to the Plaid API, create an account on the Plaid Dashboard... we'll provide a live client_id and secret via the Dashboard.\"",
+    "api_surface": "A comprehensive RESTful JSON-over-HTTP API covering financial data endpoints, webhooks, status, and reporting features.",
+    "has_mcp": true,
+    "mcp_evidence": "\"Plug me in via the Plaid MCP Server.\"",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://plaid.com/docs/api/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "QuickBooks",
+    "category": "Finance and Fintech",
+    "website_hint": "developer.intuit.com",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developer.intuit.com"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "Ramp",
+    "category": "Finance and Fintech",
+    "website_hint": "docs.ramp.com",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.ramp.com"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "PitchBook",
+    "category": "Finance and Fintech",
+    "website_hint": "pitchbook.com",
+    "one_liner": "PitchBook API provides on-demand, RESTful access to PitchBook\u2019s extensive private\u2011company, VC/PE, public\u2011company and M&A data for integration into internal systems.",
+    "auth_methods": [
+      "API Key"
+    ],
+    "self_serve": "gated",
+    "gating_evidence": "\"you will need to send a request directly to our Direct Data team\" and \"you can also head to the Plugins & Apps section... to request access to the API\"",
+    "api_surface": "RESTful API with multiple relational endpoints covering financing details, deal stock information, AI\u2011powered VC exit predictions, and other entity data",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "blocked",
+    "blocker": "Access appears gated (sales contact / partnership / existing customer).",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://pitchbook.com/help/PitchBook-api"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Consensus",
+    "category": "AI Research and Media-native",
+    "website_hint": "consensus.app",
+    "one_liner": "Provides an API to embed up-to-date peer\u2011reviewed citations and research metadata into applications, dashboards, and AI tools.",
+    "auth_methods": [],
+    "self_serve": "gated",
+    "gating_evidence": "The Consensus API is available by application only.",
+    "api_surface": "RESTful search API that returns up to 20 relevant papers per query with metadata, advanced filters, and relevance scores.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "blocked",
+    "blocker": "Access appears gated (sales contact / partnership / existing customer).",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://consensus.app/home/api/"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "higgsfield",
+    "category": "AI Research and Media-native",
+    "website_hint": "higgsfield.ai/cli",
+    "one_liner": "not found",
+    "auth_methods": [
+      "API Key"
+    ],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "REST endpoint for request status and related operations",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.higgsfield.ai/docs/authentication"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "YouTube Transcript",
+    "category": "AI Research and Media-native",
+    "website_hint": "transcriptapi.com",
+    "one_liner": "Provides API-based transcription of YouTube videos and uploaded media files",
+    "auth_methods": [],
+    "self_serve": "self_serve",
+    "gating_evidence": "API endpoints are listed publicly (e.g., POST https://www.youtubetranscript.dev/api/v2/transcribe) with no sign\u2011up or access restrictions mentioned",
+    "api_surface": "REST API covering single video transcription, batch transcription, job polling, channel queries, and media upload management",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://www.youtubetranscript.dev/api-docs"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  }
+]

@@ -1,0 +1,119 @@
+[
+  {
+    "app_name": "Salesforce",
+    "category": "CRM and Sales",
+    "website_hint": "salesforce.com",
+    "one_liner": "not found",
+    "auth_methods": [],
+    "self_serve": "unknown",
+    "gating_evidence": "",
+    "api_surface": "not found",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://www.postman.com/salesforce-developers/salesforce-developers/collection/b32utmu/salesforce-platform-apis"
+    ],
+    "raw_extraction_confidence": "low",
+    "notes": ""
+  },
+  {
+    "app_name": "HubSpot",
+    "category": "CRM and Sales",
+    "website_hint": "hubspot.com",
+    "one_liner": "HubSpot is a CRM and marketing platform that offers a suite of REST APIs for developers to integrate and extend its services.",
+    "auth_methods": [
+      "OAuth2",
+      "API Key",
+      "Static Bearer Token",
+      "Client Credentials"
+    ],
+    "self_serve": "gated",
+    "gating_evidence": "private distribution limits installation to allowlisted accounts (max 10) and requires marketplace listing for broader distribution",
+    "api_surface": "RESTful HTTP API covering CRM objects, conversations, OAuth token flows, and webhook journal management",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "blocked",
+    "blocker": "Access appears gated (sales contact / partnership / existing customer).",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.hubspot.com/docs/apps/developer-platform/build-apps/authentication/overview"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Pipedrive",
+    "category": "CRM and Sales",
+    "website_hint": "pipedrive.com",
+    "one_liner": "not found",
+    "auth_methods": [
+      "OAuth2",
+      "API Key"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "The API token can be obtained manually from the Pipedrive app.",
+    "api_surface": "RESTful JSON API covering many core product features such as deals, contacts, activities, etc.",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://developers.pipedrive.com/docs/api/v1"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Attio",
+    "category": "CRM and Sales",
+    "website_hint": "attio.com",
+    "one_liner": "Attio provides a public REST API for managing records and entries via JSON over HTTPS.",
+    "auth_methods": [
+      "OAuth"
+    ],
+    "self_serve": "unknown",
+    "gating_evidence": "not found",
+    "api_surface": "Public REST API exchanging JSON over HTTPS, covering records, entries, webhooks, rate limits, pagination, filtering, and sorting.",
+    "has_mcp": true,
+    "mcp_evidence": "MCP mentioned in navigation list (App SDK REST API MCP SQL)",
+    "buildability_verdict": "partial",
+    "blocker": "Could not confirm access model from available docs \u2014 needs manual check.",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.attio.com/rest-api/overview"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  },
+  {
+    "app_name": "Twenty",
+    "category": "CRM and Sales",
+    "website_hint": "twenty.com",
+    "one_liner": "Twenty is a platform that lets developers build apps and extend functionality with custom objects, server-side logic, UI components, and AI agents.",
+    "auth_methods": [
+      "OAuth"
+    ],
+    "self_serve": "self_serve",
+    "gating_evidence": "\"Build apps, use the API, self-host\" indicates open access",
+    "api_surface": "Offers both REST and GraphQL APIs plus webhooks",
+    "has_mcp": null,
+    "mcp_evidence": "",
+    "buildability_verdict": "ready",
+    "blocker": "",
+    "composio_toolkit_found": false,
+    "composio_toolkit_slug": null,
+    "evidence_urls": [
+      "https://docs.twenty.com/developers/introduction"
+    ],
+    "raw_extraction_confidence": "high",
+    "notes": ""
+  }
+]
