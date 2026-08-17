@@ -5,7 +5,7 @@ An automated research agent that audits 100 real apps to answer one question:
 to pick up the phone first?**
 
 **Live case study:** [add your deployed link here]
-**Full dataset:** [`output/results_publish.json`](./output/results_publish.json)
+**Full dataset:** [`results_publish.json`](./results_publish.json)
 
 ---
 
@@ -46,7 +46,6 @@ Runs entirely on free-tier APIs — no paid keys required to reproduce it.
 ## Running it yourself
 
 ```bash
-cd scripts
 pip install -r requirements.txt
 playwright install chromium   # needed for the JS-rendering fallback
 
@@ -54,36 +53,33 @@ export GROQ_API_KEY=your_key_here        # free at console.groq.com
 export COMPOSIO_API_KEY=your_key_here    # optional, enables the cross-check step
 
 # test on a handful of apps first
-python research_agent.py --input ../data/apps.csv --output ../output/results_test.json --limit 5
+python research_agent.py --input apps.csv --output results_test.json --limit 5
 
 # full run
-python research_agent.py --input ../data/apps.csv --output ../output/results.json
+python research_agent.py --input apps.csv --output results.json
 ```
 
 ## Repo structure
 
 ```
-scripts/
-  research_agent.py       the agent (search -> fetch -> extract -> cross-check)
-  requirements.txt
+research_agent.py            the agent (search -> fetch -> extract -> cross-check)
+requirements.txt
 
-data/
-  apps.csv                the 100-app input list
+apps.csv                     the 100-app input list
 
-output/
-  results_full.json           first raw run - 35/100 apps came back empty
-                               (kept intentionally, see "What went wrong" below)
-  results_retry.json          re-run of the 35 failed apps after fixing the
-                               JS-rendering + ad-link bugs
-  results_final_v2.json       after a targeted fix for a self-serve/gated
-                               misclassification pattern found in verification
-  results_publish.json        final, submitted dataset (100/100 apps resolved
-                               except 2 genuinely ambiguous ones)
-  verification_report.json    accuracy check, run 1: 60% (20-app sample)
-  verification_report_v2.json accuracy check, run 3: 85% (fresh, non-
-                               overlapping 20-app sample - the real number)
+results_full.json            first raw run - 35/100 apps came back empty
+                              (kept intentionally, see "What went wrong" below)
+results_retry.json           re-run of the 35 failed apps after fixing the
+                              JS-rendering + ad-link bugs
+results_final_v2.json        after a targeted fix for a self-serve/gated
+                              misclassification pattern found in verification
+results_publish.json         final, submitted dataset (100/100 apps resolved
+                              except 2 genuinely ambiguous ones)
+verification_report.json     accuracy check, run 1: 60% (20-app sample)
+verification_report_v2.json  accuracy check, run 3: 85% (fresh, non-
+                              overlapping 20-app sample - the real number)
 
-case_study.html            the deliverable page
+case_study.html              the deliverable page
 ```
 
 ## What went wrong, and how it was caught
